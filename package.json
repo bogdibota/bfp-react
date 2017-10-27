@@ -2,6 +2,7 @@
   "name": "bfp-react",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "https://dvkiin.xyz/bfp-react",
   "dependencies": {
     "apollo-client": "1",
     "graphql": "^0.11.7",

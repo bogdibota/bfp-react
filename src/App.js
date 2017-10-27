@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import './App.css';
 
@@ -12,7 +12,9 @@ import Profile from './pages/Profile';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter
+        basename="/bfp-react"
+      >
         <div>
           <Header user={this.props.user}/>
 
@@ -23,7 +25,7 @@ class App extends Component {
 
           <Footer/>
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
