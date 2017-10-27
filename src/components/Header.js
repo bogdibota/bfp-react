@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import FlatButton from 'material-ui/FlatButton';
+import Avatar from 'material-ui/Avatar';
+import ListItem from 'material-ui/List/ListItem';
+
+import { facebookLoginUrl } from '../lib/facebook';
 
 const style = {
   paddingTop: 64,
@@ -17,12 +22,29 @@ class Header extends Component {
 
   handleClose = () => this.setState({open: false});
 
+  login = () => window.location = facebookLoginUrl;
+
+  renderUserAvatar = () => (
+    <ListItem
+      disabled={true}
+      leftAvatar={
+        <Avatar src={this.props.user.avatar}/>
+      }
+    >
+      {this.props.user.name}
+    </ListItem>
+  );
+
   render() {
+    const {user} = this.props;
     return (
       <header>
         <AppBar
           title="BFP"
           onLeftIconButtonTouchTap={this.handleToggle}
+          iconElementRight={user
+            ? this.renderUserAvatar()
+            : <FlatButton label="Login with Facebook" onClick={this.login}/>}
         />
 
         <Drawer

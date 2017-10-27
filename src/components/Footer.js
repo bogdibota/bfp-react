@@ -9,14 +9,14 @@ const styles = {
   dividerLine: {
     border: '1px solid rgba(0,0,0,.12)',
     height: '50%',
-    'align-self': 'center',
+    alignSelf: 'center',
   },
   footer: {
     height: 200,
     width: '100%',
     display: 'flex',
-    'justify-content': 'space-around',
-    'align-items': 'center',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 };
 
