@@ -1,6 +1,7 @@
 const appId = '1462447443831110';
-// export const redirectUrl = 'https://dvkiin.xyz/bfp-react/profile';
-const redirectUrl = 'http://local.dvkiin.xyz:3000/profile'; // DEV
+export const redirectUrl = process.env.NODE_ENV && process.env.NODE_ENV === 'production'
+  ? 'https://dvkiin.xyz/bfp-react/profile'
+  : 'http://local.dvkiin.xyz:3000/profile';
 const facebookCookie = 'fb_login';
 const facebookRelogKey = 'auto_relog_facebook';
 

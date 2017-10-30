@@ -10,12 +10,14 @@ import Footer from './components/Footer';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
 
+const basename = process.env.NODE_ENV && process.env.NODE_ENV === 'production'
+  ? '/bfp-react'
+  : '/';
+
 class App extends Component {
   render() {
     return (
-      <BrowserRouter
-        basename="/bfp-react"
-      >
+      <BrowserRouter basename={basename}>
         <div>
           <Header user={this.props.user}/>
 

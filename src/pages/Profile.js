@@ -20,7 +20,7 @@ class Profile extends Component {
   render() {
     const {user} = this.props;
     return (
-      <div>
+      <div className="profile-page">
         {user ? <h1>Welcome, {user.name}</h1>
           : <h1>Please login</h1>
         }
