@@ -20,6 +20,7 @@ const styles = {
     bottom: 20,
     left: 'auto',
     position: 'fixed',
+    zIndex: 1,
   },
 };
 

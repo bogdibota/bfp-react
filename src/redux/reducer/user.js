@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action) {
       };
     case CURRENT_USER_LOADED:
       return {
-        user,
+        user: user || initialState.user,
       };
     case LOGOUT:
       return {
