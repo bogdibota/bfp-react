@@ -7,3 +7,8 @@ export const CURRENT_USER_LOADED = 'CURRENT_USER_LOADED';
 export function currentUserLoaded(user) {
   return {type: CURRENT_USER_LOADED, user};
 }
+
+export const LOGOUT = 'LOGOUT';
+export function logout() {
+  return {type: LOGOUT};
+}

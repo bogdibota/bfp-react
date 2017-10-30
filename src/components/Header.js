@@ -6,6 +6,9 @@ import FlatButton from 'material-ui/FlatButton';
 import Avatar from 'material-ui/Avatar';
 import ListItem from 'material-ui/List/ListItem';
 import Paper from 'material-ui/Paper';
+import IconMenu from 'material-ui/IconMenu';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import Divider from 'material-ui/Divider';
 import { withRouter } from 'react-router';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -36,6 +39,12 @@ const styles = {
   menuLinkActive: {
     fontWeight: 'bold',
   },
+  userSection: {
+    color: '#fff',
+  },
+  userSectionMenu: {
+    fill: '#fff',
+  },
 };
 
 const MenuLink = ({closeDrawer, route, text}) => (
@@ -46,6 +55,28 @@ const MenuLink = ({closeDrawer, route, text}) => (
     <MenuItem>{text}</MenuItem>
   </NavLink>
 );
+
+const Logged = ({user: {avatar, name}, logout, navigate}) => (
+  <IconMenu
+    iconButtonElement={
+      <ListItem
+        style={styles.userSection}
+        leftAvatar={<Avatar src={avatar}/>}
+        rightIcon={<MoreVertIcon style={styles.userSectionMenu}/>}
+      >
+        {name}
+      </ListItem>
+    }
+    targetOrigin={{horizontal: 'right', vertical: 'top'}}
+    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+  >
+    <MenuItem primaryText="Profile" onClick={() => navigate('/profile')}/>
+    <Divider/>
+    <MenuItem primaryText="Sign out" onClick={logout}/>
+  </IconMenu>
+);
+
+Logged.muiName = 'IconMenu';
 
 class Header extends Component {
   constructor(props) {
@@ -91,7 +122,7 @@ class Header extends Component {
   };
 
   render() {
-    const {user, history} = this.props;
+    const {user, history, logout} = this.props;
 
     return (
       <header>
@@ -101,7 +132,7 @@ class Header extends Component {
           onLeftIconButtonTouchTap={this.handleToggle}
           onTitleTouchTap={() => history.push('/')}
           iconElementRight={user
-            ? this.renderUserAvatar()
+            ? <Logged user={user} logout={logout} navigate={history.push}/>
             : <FlatButton label="Login with Facebook" onClick={this.login}/>}
         />
         {this.renderDrawer()}

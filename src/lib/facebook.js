@@ -27,3 +27,14 @@ const getCookie = function (name) {
 export function getAccessToken() {
   return getCookie(facebookCookie);
 }
+
+export function shouldRelog() {
+  const storageValue = window.localStorage.getItem(facebookRelogKey);
+  return storageValue && storageValue === 'true';
+}
+
+export function logout() {
+  const expiredDate = new Date(new Date().getTime() - 1).toGMTString();
+  document.cookie = `${facebookCookie}=null;expires=${expiredDate}`;
+  window.localStorage.setItem(facebookRelogKey, false);
+}

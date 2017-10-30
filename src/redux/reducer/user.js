@@ -1,4 +1,4 @@
-import { CURRENT_USER_LOADED, LOAD_CURRENT_USER } from '../action/user';
+import { CURRENT_USER_LOADED, LOAD_CURRENT_USER, LOGOUT } from '../action/user';
 
 const initialState = {};
 
@@ -13,6 +13,8 @@ export default function reducer(state = initialState, action) {
       return {
         user,
       };
+    case LOGOUT:
+      return {};
     default:
       return state;
   }
