@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
 
 import { saveAccessToken } from '../lib/facebook';
 import { loadCurrentUser } from '../redux/action/user';
 
+import './Profile.css';
+
+const defaultUser = {
+  name: 'Placeholder',
+  avatar: 'default',
+};
 
 class Profile extends Component {
 
@@ -17,14 +25,26 @@ class Profile extends Component {
     }
   }
 
+  fillUser(user = {}) {
+    return {
+      name: user.name || defaultUser.name,
+      avatar: user.avatar || defaultUser.avatar,
+    };
+  }
+
   render() {
     const {user} = this.props;
+    const safeUser = this.fillUser(user);
     return (
-      <div className="profile-page">
-        {user ? <h1>Welcome, {user.name}</h1>
-          : <h1>Please login</h1>
-        }
-      </div>
+      <Paper zDepth={1} className="profile-page">
+        <div className="header"/>
+        <img src={safeUser.avatar} alt={safeUser.name}/>
+        <div className="user-name">{safeUser.name}</div>
+        <Divider />
+        <div className="activity no-activity">
+          No recent activity.
+        </div>
+      </Paper>
     );
   }
 }

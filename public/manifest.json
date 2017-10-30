@@ -3,7 +3,7 @@
   "name": "BFP React",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "bfp-react/favicon.ico",
       "sizes": "192x192",
       "type": "image/png"
     }

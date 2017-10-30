@@ -1,0 +1,43 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 100%;
+  align-self: center;
+
+  > .header {
+    height: 20vh;
+    background-color: #4CAF50;
+  }
+
+  > img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    align-self: center;
+    border: 3px solid #fff;
+    margin-top: -38px;
+  }
+
+  > .user-name {
+    flex: 1;
+    text-align: center;
+    margin: 1em 0;
+
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  > .activity {
+    min-height: 300px;
+
+    &.no-activity {
+      font-style: italic;
+      font-size: 18px;
+      color: rgba(0, 0, 0, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

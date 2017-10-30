@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
 body {
+  display: flex;
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  min-height: 100vh;
+  font-family: Roboto, SansSerif;
+
+  #root {
+    flex: 1;
+    display: flex;
+  }
+
 }
