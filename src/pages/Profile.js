@@ -9,11 +9,6 @@ import { loadCurrentUser } from '../redux/action/user';
 
 import './Profile.css';
 
-const defaultUser = {
-  name: 'Placeholder',
-  avatar: 'default',
-};
-
 class Profile extends Component {
 
   componentWillMount() {
@@ -25,21 +20,16 @@ class Profile extends Component {
     }
   }
 
-  fillUser(user = {}) {
-    return {
-      name: user.name || defaultUser.name,
-      avatar: user.avatar || defaultUser.avatar,
-    };
-  }
-
   render() {
     const {user} = this.props;
-    const safeUser = this.fillUser(user);
     return (
       <Paper zDepth={1} className="profile-page">
         <div className="header"/>
-        <img src={safeUser.avatar} alt={safeUser.name}/>
-        <div className="user-name">{safeUser.name}</div>
+        {user.avatar
+          ? <img src={user.avatar} alt={user.name}/>
+          : <div className="default-user-image"/>
+        }
+        <div className="user-name">{user.name}</div>
         <Divider />
         <div className="activity no-activity">
           No recent activity.

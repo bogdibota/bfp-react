@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 
 import Profile from './pages/Profile';
 import Home from './pages/Home';
+import Groups from './pages/Groups';
 
 const basename = process.env.NODE_ENV && process.env.NODE_ENV === 'production'
   ? '/bfp-react'
@@ -27,6 +28,7 @@ class App extends Component {
           <main>
             <Route exact path="/" component={Home}/>
             <Route path="/profile" component={Profile}/>
+            <Route path="/groups" component={Groups}/>
           </main>
 
           <Footer/>

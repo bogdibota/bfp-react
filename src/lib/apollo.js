@@ -31,3 +31,22 @@ export const login = async () => client
     variables: {accessToken: getCachedAccessToken()},
   })
   .then(({data: {login}}) => login);
+
+export const myGroups = async () => client
+  .query({
+    query: gql`
+      query myGroups($accessToken: String!) {
+        myGroups(accessToken: $accessToken) {
+          id
+          name
+          users {
+            id
+            name
+            avatar
+          }
+        }
+      }
+    `,
+    variables: {accessToken: getCachedAccessToken()},
+  })
+  .then(({data: {myGroups}}) => myGroups);

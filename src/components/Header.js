@@ -131,7 +131,7 @@ class Header extends Component {
           titleStyle={styles.title}
           onLeftIconButtonTouchTap={this.handleToggle}
           onTitleTouchTap={() => history.push('/')}
-          iconElementRight={user
+          iconElementRight={!user.isFake
             ? <Logged user={user} logout={logout} navigate={history.push}/>
             : <FlatButton label="Login with Facebook" onClick={this.login}/>}
         />

@@ -1,0 +1,12 @@
+@import 'style/shared.scss';
+
+.groups-page {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  .group {
+    width: 300px;
+    margin: .5em;
+  }
+}

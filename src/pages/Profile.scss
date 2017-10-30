@@ -1,3 +1,5 @@
+@import 'style/shared.scss';
+
 .profile-page {
   display: flex;
   flex-direction: column;
@@ -7,16 +9,17 @@
 
   > .header {
     height: 20vh;
-    background-color: #4CAF50;
+    background-color: $secondaryColor;
   }
 
-  > img {
+  > img, > .default-user-image {
     width: 70px;
     height: 70px;
     border-radius: 50%;
     align-self: center;
     border: 3px solid #fff;
     margin-top: -38px;
+    background-color: $mainColor;
   }
 
   > .user-name {
