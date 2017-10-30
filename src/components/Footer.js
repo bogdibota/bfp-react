@@ -21,19 +21,31 @@ const styles = {
 };
 
 class Footer extends Component {
+  navigateExt = (link) => () => window.location = link;
+
   render() {
     return (
       <footer>
         <Paper style={styles.footer} zDepth={1}>
           <List>
-            <ListItem primaryText="Github" leftIcon={<ActionCode />}/>
-            <ListItem primaryText="Issues" leftIcon={<ActionBugReport />}/>
+            <ListItem primaryText="Github"
+                      onClick={this.navigateExt('https://github.com/bogdibota/bfp-react')}
+                      leftIcon={<ActionCode />}/>
+            <ListItem primaryText="Issues"
+                      onClick={this.navigateExt('https://github.com/bogdibota/bfp-react/issues')}
+                      leftIcon={<ActionBugReport />}/>
           </List>
           <div style={styles.dividerLine} className="line"/>
           <List>
-            <ListItem primaryText="dvkiin.xyz" leftIcon={<ContentLink />}/>
-            <ListItem primaryText="BFP Angular" leftIcon={<ContentLink />}/>
-            <ListItem primaryText="BFP Vue.js" leftIcon={<ContentLink />}/>
+            <ListItem primaryText="dvkiin.xyz"
+                      onClick={this.navigateExt('https://dvkiin.xyz')}
+                      leftIcon={<ContentLink />}/>
+            <ListItem primaryText="BFP Angular"
+                      onClick={this.navigateExt('https://dvkiin.xyz/bfp-angular')}
+                      leftIcon={<ContentLink />}/>
+            <ListItem primaryText="BFP Vue.js"
+                      onClick={this.navigateExt('https://dvkiin.xyz/bfp-vue')}
+                      leftIcon={<ContentLink />}/>
           </List>
         </Paper>
       </footer>

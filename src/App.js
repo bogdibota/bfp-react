@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Profile from './pages/Profile';
+import Home from './pages/Home';
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
           <Header user={this.props.user}/>
 
           <main>
-            <Route exact path="/" component={() => <div>home</div>}/>
+            <Route exact path="/" component={Home}/>
             <Route path="/profile" component={Profile}/>
           </main>
 
