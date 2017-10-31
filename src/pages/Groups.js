@@ -6,6 +6,7 @@ import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import CreateGroupDialog from '../components/CreateGroupDialog';
 
 import './Groups.css';
 
@@ -25,8 +26,21 @@ const styles = {
 };
 
 class Groups extends Component {
+  state = {
+    dialogOpen: false,
+  };
+
+  handleOpen = () => {
+    this.setState(() => ({dialogOpen: true}));
+  };
+
+  handleClose = () => {
+    this.setState(() => ({dialogOpen: false}));
+  };
+
   render() {
     const {myGroups} = this.props.state;
+    const {dialogOpen} = this.state;
     return (
       <div className="groups-page">
         {myGroups.map(({id, name, users}) => (
@@ -45,9 +59,11 @@ class Groups extends Component {
           </Card>
         ))}
 
-        <FloatingActionButton style={styles.fab}>
+        <FloatingActionButton style={styles.fab} onClick={this.handleOpen}>
           <ContentAdd />
         </FloatingActionButton>
+
+        <CreateGroupDialog open={dialogOpen} handleClose={this.handleClose} saveGroup={console.log}/>
       </div>
     );
   }

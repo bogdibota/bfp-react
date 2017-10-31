@@ -18,19 +18,7 @@ function getCachedAccessToken() {
   return facebookToken;
 }
 
-export const login = async () => client
-  .mutate({
-    mutation: gql`
-      mutation login($accessToken: String!) {
-        login(accessToken: $accessToken) {
-          name
-          avatar
-        }
-      }
-    `,
-    variables: {accessToken: getCachedAccessToken()},
-  })
-  .then(({data: {login}}) => login);
+// queries
 
 export const myGroups = async () => client
   .query({
@@ -50,3 +38,32 @@ export const myGroups = async () => client
     variables: {accessToken: getCachedAccessToken()},
   })
   .then(({data: {myGroups}}) => myGroups);
+
+// mutations
+
+export const login = async () => client
+  .mutate({
+    mutation: gql`
+      mutation login($accessToken: String!) {
+        login(accessToken: $accessToken) {
+          name
+          avatar
+        }
+      }
+    `,
+    variables: {accessToken: getCachedAccessToken()},
+  })
+  .then(({data: {login}}) => login);
+
+export const createGroup = async () => client
+  .mutate({
+    mutation: gql`
+      mutation createGroup($accessToken: String!) {
+        createGroup(accessToken: $accessToken) {
+          id
+        }
+      }
+    `,
+    variables: {accessToken: getCachedAccessToken()},
+  })
+  .then(({data: {createGroup}}) => createGroup);
