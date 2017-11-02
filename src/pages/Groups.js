@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Card, CardTitle } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
@@ -7,6 +8,8 @@ import Divider from 'material-ui/Divider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import CreateGroupDialog from '../components/CreateGroupDialog';
+
+import { createGroup } from '../redux/action/group';
 
 import './Groups.css';
 
@@ -39,7 +42,7 @@ class Groups extends Component {
   };
 
   render() {
-    const {myGroups} = this.props.state;
+    const {state: {myGroups}, actions: {createGroup}} = this.props;
     const {dialogOpen} = this.state;
     return (
       <div className="groups-page">
@@ -63,7 +66,7 @@ class Groups extends Component {
           <ContentAdd />
         </FloatingActionButton>
 
-        <CreateGroupDialog open={dialogOpen} handleClose={this.handleClose} saveGroup={console.log}/>
+        <CreateGroupDialog open={dialogOpen} handleClose={this.handleClose} saveGroup={createGroup}/>
       </div>
     );
   }
@@ -71,4 +74,5 @@ class Groups extends Component {
 
 export default connect(
   ({group: {myGroups}}) => ({state: {myGroups}}),
+  dispatch => ({actions: bindActionCreators({createGroup}, dispatch)}),
 )(Groups);

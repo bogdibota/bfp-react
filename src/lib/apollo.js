@@ -36,6 +36,7 @@ export const myGroups = async () => client
       }
     `,
     variables: {accessToken: getCachedAccessToken()},
+    fetchPolicy: 'network-only',
   })
   .then(({data: {myGroups}}) => myGroups);
 
@@ -55,15 +56,15 @@ export const login = async () => client
   })
   .then(({data: {login}}) => login);
 
-export const createGroup = async () => client
+export const createGroup = async (name) => client
   .mutate({
     mutation: gql`
-      mutation createGroup($accessToken: String!) {
-        createGroup(accessToken: $accessToken) {
+      mutation createGroup($accessToken: String!, $name: String!) {
+        createGroup(accessToken: $accessToken, name: $name) {
           id
         }
       }
     `,
-    variables: {accessToken: getCachedAccessToken()},
+    variables: {accessToken: getCachedAccessToken(), name},
   })
   .then(({data: {createGroup}}) => createGroup);
