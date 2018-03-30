@@ -12,3 +12,8 @@ export const CREATE_GROUP = 'CREATE_GROUP';
 export function createGroup(name) {
   return {type: CREATE_GROUP, name};
 }
+
+export const ADD_USER = 'ADD_USER';
+export function addUser(groupName, userName) {
+  return {type: ADD_USER, userName };
+}
