@@ -5,12 +5,12 @@ import TextField from 'material-ui/TextField';
 
 class AddUserDialog extends Component {
   state = {
-    userName: '',
+    newUserName: '',
   };
 
   render() {
-    const {handleClose, open, saveGroup} = this.props;
-    const {newGroupName} = this.state;
+    const {handleClose, open, saveUser, id} = this.props;
+    const {newUserName} = this.state;
     const actions = [
       <FlatButton
         label="Cancel"
@@ -23,7 +23,7 @@ class AddUserDialog extends Component {
         keyboardFocused={true}
         onClick={() => {
           handleClose();
-          saveGroup(newGroupName);
+          saveUser(newUserName, id);
         }}
       />,
     ];
@@ -40,8 +40,8 @@ class AddUserDialog extends Component {
           hintText="name of new user"
           floatingLabelText="User name"
           floatingLabelFixed={true}
-          value={newGroupName}
-          onChange={({target: {value}}) => this.setState(() => ({userName: value}))}
+          value={newUserName}
+          onChange={({target: {value}}) => this.setState(() => ({newUserName: value}))}
           fullWidth={true}
         />
       </Dialog>

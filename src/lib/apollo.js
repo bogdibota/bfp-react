@@ -68,3 +68,16 @@ export const createGroup = async (name) => client
     variables: {accessToken: getCachedAccessToken(), name},
   })
   .then(({data: {createGroup}}) => createGroup);
+
+  export const createUser = async (name) => client
+    .mutate({
+      mutation: gql`
+        mutation createGroup($accessToken: String!, $name: String!) {
+          createUser(accessToken: $accessToken, name: $name) {
+            id
+          }
+        }
+      `,
+      variables: {accessToken: getCachedAccessToken(), name},
+    })
+    .then(({data: {createUser}}) => createUser);

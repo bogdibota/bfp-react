@@ -10,7 +10,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import CreateGroupDialog from '../components/CreateGroupDialog';
 import AddUserDialog from '../components/AddUserDialog';
 
-import { createGroup } from '../redux/action/group';
+import { createGroup, addUser } from '../redux/action/group';
 import ReactTooltip from 'react-tooltip';
 
 import './Groups.css';
@@ -34,14 +34,16 @@ class Groups extends Component {
   state = {
     dialogOpen: false,
     userDialogOpen: false,
+    groupId: -1
   };
 
-  handleUserOpen = () => {
+  handleUserOpen = (id) => {
     this.setState(() => ({userDialogOpen: true}));
+    this.setState(() => ({groupId: id}));
   }
 
   handleUserClose = () => {
-    this.setState(() => ({userDialogClose: false}));
+    this.setState(() => ({userDialogOpen: false}));
   }
 
   handleOpen = () => {
@@ -53,14 +55,15 @@ class Groups extends Component {
   };
 
   render() {
-    const {state: {myGroups}, actions: {createGroup}} = this.props;
+    const {state: {myGroups}, actions: {createGroup, addUser}} = this.props;
     const {dialogOpen} = this.state;
     const {userDialogOpen} = this.state;
+    const {groupId} = this.state;
     return (
       <div className="groups-page">
         {myGroups.map(({id, name, users}) => (
-          <Card key={id} className="group" onClick={()=>console.log("should redirect to group.js page")}>
-            <CardTitle title={name} subtitle={`${users.length} ${users.length === 1 ? 'person' : 'people'}`}/>
+          <Card key={id} className="group">
+            <CardTitle key={id} title={name} className="bfp-card-title" subtitle={`${users.length} ${users.length === 1 ? 'person' : 'people'}`}  onClick={()=>console.log("should redirect to group.js page")}/>
             <Divider />
             <List>
               {users.map(({id: userId, name, avatar}) => (
@@ -71,7 +74,7 @@ class Groups extends Component {
                 />
               ))}
             </List>
-            <FloatingActionButton mini={true} style={{float:"right",margin: "5px"}} data-tip="Add user" onClick={this.userDialogOpen}>
+            <FloatingActionButton mini={true} style={{float:"right",margin: "5px"}} data-tip="Add user" onClick={()=> {this.handleUserOpen(id)}}>
               <ContentAdd />
             </FloatingActionButton>
             <ReactTooltip />
@@ -85,7 +88,7 @@ class Groups extends Component {
 
         <CreateGroupDialog open={dialogOpen} handleClose={this.handleClose} saveGroup={createGroup}/>
 
-        <AddUserDialog open={userDialogOpen} handleClose={this.handleUserClose} saveUser={()=>{console.log("ADDUSER")}}/>
+        <AddUserDialog open={userDialogOpen} handleClose={this.handleUserClose} saveUser={addUser} id={groupId} />
 
       </div>
     );
@@ -94,5 +97,5 @@ class Groups extends Component {
 
 export default connect(
   ({group: {myGroups}}) => ({state: {myGroups}}),
-  dispatch => ({actions: bindActionCreators({createGroup}, dispatch)}),
+  dispatch => ({actions: bindActionCreators({addUser, createGroup}, dispatch)}),
 )(Groups);

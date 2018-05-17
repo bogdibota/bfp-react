@@ -2,7 +2,7 @@ import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { CREATE_GROUP, groupsLoaded, LOAD_MY_GROUPS, loadMyGroups , ADD_USER, addUser } from '../redux/action/group';
 import { CURRENT_USER_LOADED } from '../redux/action/user';
 
-import { createGroup, myGroups } from '../lib/apollo';
+import { createGroup, myGroups, createUser } from '../lib/apollo';
 
 function * executeLoadMyGroups({type, user}) {
   if (type === CURRENT_USER_LOADED && !user) {
@@ -18,6 +18,7 @@ function * executeCreateGroup({name}) {
 }
 
 function * executeAddUser ({groupName, userName}) {
+  yield call(createUser,userName);
   yield put(addUser(groupName, userName))
 }
 
